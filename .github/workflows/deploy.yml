@@ -3,11 +3,15 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - main  # Déclencher le workflow sur des pushs vers la branche "main"
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -31,4 +35,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: gengine/build # Indiquer le chemin correct pour le déploiement
+          publish_dir: gengine/build
